@@ -1,0 +1,22 @@
+:root {
+  --win95-gray: #c0c0c0;
+  --win95-dark: #808080;
+  --win95-darker: #404040;
+  --win95-light: #ffffff;
+  --win95-blue: #000080;
+  --win95-text: #000000;
+}
+
+.win95-border {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--win95-light) var(--win95-darker) var(--win95-darker) var(--win95-light);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.win95-inset {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--win95-darker) var(--win95-light) var(--win95-light) var(--win95-darker);
+  background-color: var(--win95-gray);
+}
