@@ -102,33 +102,47 @@
     console.log(`Getting options for group: ${group}`);
     
     try {
-      // Fetch the directory listing from the server
+      // Try to fetch from server first
       const response = await fetch(`/api/layers/${group}`);
-      if (!response.ok) {
-        console.error(`Failed to fetch layer options for ${group}:`, response.status);
-        return [];
+      if (response.ok) {
+        const files = await response.json();
+        console.log(`Files in ${group}:`, files);
+        
+        // Extract base names (remove .png extension and numbers at the end)
+        const options = files
+          .filter((file: string) => file.endsWith('.png'))
+          .map((file: string) => {
+            const baseName = file.replace(/\.png$/, '').replace(/\d+$/, '');
+            return baseName;
+          })
+          .filter((name: string, index: number, arr: string[]) => arr.indexOf(name) === index);
+        
+        console.log(`Options for ${group}:`, options);
+        return options;
       }
-      
-      const files = await response.json();
-      console.log(`Files in ${group}:`, files);
-      
-      // Extract base names (remove .png extension and numbers at the end)
-      const options = files
-        .filter((file: string) => file.endsWith('.png'))
-        .map((file: string) => {
-          // Remove .png extension and numbers at the end
-          const baseName = file.replace(/\.png$/, '').replace(/\d+$/, '');
-          console.log(`Extracted base name from "${file}": "${baseName}"`);
-          return baseName;
-        })
-        .filter((name: string, index: number, arr: string[]) => arr.indexOf(name) === index); // Remove duplicates
-      
-      console.log(`Options for ${group}:`, options);
-      return options;
     } catch (error) {
-      console.error(`Error fetching layer options for ${group}:`, error);
-      return [];
+      console.log(`Server API not available, using fallback for ${group}`);
     }
+    
+    // Fallback: Use hardcoded options based on the actual files
+    const fallbackOptions: Record<string, string[]> = {
+      'Background': ['A_Roads', 'Akademia_Italia', 'Alotments', 'Atms_Ktms', 'Bajan_Bando', 'Bajan_Cliff_View', 'Bajan_Safehouse', 'Bajan_Villa', 'Big_pharma', 'Bitcoin_Broly', 'Black_Pool', 'Blue_Cryptonite', 'Blue_Eyes_Thunder_Dragon', 'Bonus_stage', 'Cell_Games', 'China', 'China_Courtyard', 'Chongqing', 'Chongqing_磁器口古镇', 'Chuppa_pillz', 'Cloud_Nine', 'CountrySide_1', 'CountrySide_2', 'County_Line', 'Cour_dhonneur', 'Danube_River', 'DMT', 'Dubai_Desert', 'Dubai_Desert_2', 'Duck_hunt', 'Fenty_Bando', 'Fishers_Bastion', 'Five_joints', 'Furīza_no_Uchūsen', 'Hadoken_波動拳', 'Honest_werk', 'Hong_Kong', 'Hongya_Cave_洪崖洞', 'Hyperbolic_Timechamber', 'Jiggas_in_paris', 'Jumeirah_Beach_Residence', 'Kong_Island', 'Light_Mist', 'Magyar_Állami_Operaház', 'Marina_Skyline', 'Marky_b', 'Mega_Drive', 'Money_Shot', 'Museum_of_the_Future', 'Nacht_der_Untoten', 'Nacht_der_Untoten_2', 'Nity_Ave', 'NYCafé', 'Open_Sea', 'Open_Sea_2', 'Palm_Jumeirah', 'Paradise_1', 'Paradise_2', 'Paradise_3', 'Paradise_4', 'Paradise_5', 'Paradise_6', 'Pepe_Pillz', 'Phantom', 'Pick_n_Mix', 'Pink_Champagne', 'Planet_Kai', 'Raffles_City', 'Rekt_Bardock', 'Richard_Haynes_Boardwalk', 'Schizo_Yoshi_Kart', 'Shang_Tsungs_Palace', 'Sleepy_Hollow', 'SNES_Cartridge', 'Star_Dawg', 'Széchenyi_Lánchíd', 'Tesla_Pillz', 'The_Canal', 'The_Endz', 'The_Endz_2', 'The_Marina', 'The_Office_SZN1', 'The_Office_SZN2', 'The_Peak', 'The_Pit', 'Touch_grass', 'UPS_pillz', 'White_Widow', 'Yangtze_River'],
+      'Body': ['Boy_Who_Cried_Wolf', 'Brother', 'Gora', 'Greeny', 'Lobster_Pink', 'Purple_Urkle', 'Schizo_Blue', 'Schizo_Panda', 'Snowflake', 'Stone_Cyborg'],
+      'Clothing': ['ADHD_Tshirt', 'Agbada_Tshirt', 'Apestar_Jacket', 'Argent_Tshirt', 'Autism_Jumper', 'Baby_Schizo_Pink_Tshirt', 'Baby_Schizo_White_Tshirt', 'Backwoods_Hoodie', 'Bitchari_T_shirt', 'Black_Jacket', 'Blue_Puffer', 'Bob_Sponge_Tshirt', 'Chaatgpt_Tshirt', 'Ekubo_Tshirt', 'ETHLend_Tshirt', 'Faguar_Tshirt', 'Flintstones_Tshirt', 'Get_Money_Tshirt', 'Gods_Strongest_Schizo', 'Gold_Skull_Shirt', 'Golden_Boy_Tracksuit', 'Goochi_Track_Jacket', 'Guru_Suit', 'I_Am_Carrying_Tshirt', 'I_Have_A_Weapon', 'Im_with_Schizodio_Tshirt', 'Israeli_Coin_Tshirt', 'Krusty_Tshirt', 'Kurta_Jeet', 'Life_is_Soup_Tshirt', 'Love_Nigeria_Tshirt', 'Luv_Cobie_Tshirt', 'Mushroom_Jacket', 'Mushroomon_Jacket', 'Okay_Now_Tshirt', 'Paradex_Tshirt', 'Peaky_Blind_Tshirt', 'Pink_Puffer', 'Polymarket_Tshirt', 'Puff_Tshirt', 'Purple_Aki_Tshirt', 'Purple_Tuxedo', 'Relax_Vest', 'Remilia_Jacket', 'Saiyan_Suit', 'Scared_of_Women', 'Schizario_Tshirt', 'Schizo_Duck_Tshirt', 'Schizo_Game_Tshirt', 'Schizo_Hut_Tshirt', 'Schizo_Network_Tshirt', 'Schizo_Red_Tshirt', 'Schizo_Tunez_Tshirt', 'Schizoberry_Tshirt', 'Schizodio_Company_Blue_Tshirt', 'Schizodio_Company_Brown_Tshirt', 'School_Uniform', 'SLM_Tshirt', 'Spider_Tshirt', 'Squid_Jacket', 'Starknet_Tshirt', 'StarkWare_Alf_Tshirt', 'Stoney_Puffer', 'Stop_Being_Poor_Vest'],
+      'Hair': ['Black_Jellycut', 'Black_Pompadour', 'Blondie_Brown_Pompadour', 'Blue_Curtain_Bob', 'Blue_Jellycut', 'Brown_Curtain_Bob', 'Brown_Jellycut', 'Brown_Pompadour', 'Green_Curtain_Bob', 'Green_Jellycut', 'Green_Pompadour', 'Orange_Curtain_Bob', 'Orange_Jellycut', 'Orange_Pompadour', 'Pink_Curtain_Bob', 'Pink_Jellycut', 'Pink_Pompadour', 'Purple_Curtain_Bob', 'Purple_Jellycut', 'Purple_Pompadour', 'Rainbow_Curtain_Bob', 'Rainbow_Jellycut', 'Rainbow_Pompadour', 'Red_Curtain_Bob', 'Red_Jellycut', 'Red_Pompadour', 'White_Curtain_Bob', 'White_Jellycut', 'White_Pompadour', 'Yellowy_Orange_Curtain_Bob', 'Yellowy_Orange_Jellycut', 'Yellowy_Orange_Pompadour'],
+      'Eyebrows': ['Black_Notched_Slits', 'Black_Slits', 'Blue_Notched_Slit', 'Blue_Slits', 'Brown_Notched_Slits', 'Brown_Slits', 'Green_Notched_Slits', 'Green_Slits', 'Orange_Notched_Slits', 'Orange_Slits', 'Pink_Notched_Slits', 'Pink_Slits', 'Purple_Notched_Slits', 'Purple_Slits', 'Rainbow_Notched_Slits', 'Rainbow_Slits', 'Red_Notched_Slits', 'Red_Slits', 'Standard_', 'White_Notched_Slits', 'White_Slits', 'Yellowy_Orange_Notched_Slits', 'Yellowy_Orange_Slits'],
+      'Eyes': ['Blood_Shot', 'Confusion', 'Crying', 'Dead', 'Determined', 'Evil', 'Happy', 'Laser', 'Love', 'Money', 'Neutral', 'Pissed', 'Sad', 'Scared', 'Sleepy', 'Squint', 'Stoned', 'Surprised', 'Suspicious', 'Tired', 'Wink', 'Worried', 'Zombie'],
+      'Eyewear': ['No_Eyewear', 'Safety_Glasses_Blue', 'Safety_Glasses_Green', 'Safety_Glasses_Red', 'Safety_Glasses_Yellow'],
+      'Mouth': ['Happy', 'Neutral', 'Open', 'Sad', 'Scared', 'Smile', 'Surprised', 'Tongue', 'Wink'],
+      'Headwear': ['90s_Trapstar', 'Birka_Red', 'Clown_Headwarmer', 'Crown', 'Devil_Horns', 'Flower_Crown', 'Golden_Crown', 'Halo', 'Headband', 'Headphones', 'Helmet', 'Hood', 'Jester_Hat', 'Knight_Helmet', 'Party_Hat', 'Pirate_Hat', 'Police_Cap', 'Santa_Hat', 'Scarf', 'Ski_Goggles', 'Snapback', 'Sombrero', 'Space_Helmet', 'Sunglasses', 'Top_Hat', 'Turban', 'Viking_Helmet', 'Wizard_Hat'],
+      'Mask': ['Cyborg_Hypio', 'No_Mask', 'Schizodio_OG_Mask'],
+      'Accessories': ['Backwoods_Blunt', 'God_Candle', 'Grime_Reaper_Candle', 'Honey_Comb_Blunt', 'Memory_Card_Chain', 'No_Accessories', 'Pixelated_Ciggy', 'Shotgun_Shell_Chain'],
+      'Weapons': ['Ak47_Pixel_Green', 'Avnu_Machete', 'Blades_Sword', 'Bow_Arrow', 'Chainsaw', 'Crossbow', 'Dagger', 'Flame_Thrower', 'Grenade', 'Gun', 'Hammer', 'Katana', 'Knife', 'Laser_Gun', 'Mace', 'Rocket_Launcher', 'Shield', 'Spear', 'Staff', 'Sword', 'Throwing_Star'],
+      'Sidekick': ['Alf', 'Arnesh', 'Baboon', 'Bat', 'Bear', 'Bird', 'Cat', 'Chicken', 'Cow', 'Deer', 'Dog', 'Dolphin', 'Dragon', 'Duck', 'Eagle', 'Elephant', 'Fish', 'Fox', 'Frog', 'Giraffe', 'Goat', 'Gorilla', 'Horse', 'Kangaroo', 'Koala', 'Lion', 'Monkey', 'Mouse', 'Owl', 'Panda', 'Penguin', 'Pig', 'Rabbit', 'Shark', 'Sheep', 'Snake', 'Tiger', 'Turtle', 'Unicorn', 'Whale', 'Wolf', 'Zebra'],
+      'Overlays': ['Abdel_Called_Me', 'Alexa_Hears', 'Bastard_Guy', 'Bitch_Im_Back', 'Dont_Trust_Anyone', 'Fuck_The_System', 'Get_Money', 'I_Believed_in_Something', 'I_Dont_Need_A_Lawyer', 'I_Have_A_Weapon', 'Im_Carrying', 'Im_Not_A_Cop', 'Im_With_Schizodio', 'Keep_It_Real', 'Life_Is_Soup', 'Make_Starknet_Great_Again', 'Money_Over_Everything', 'No_Snitching', 'On_My_Momma', 'Real_Nigga', 'Schizo_For_Life', 'Schizodio_Company', 'Stay_Humble', 'This_My_Jigga', 'Trust_No_One', 'We_Out_Here', 'What_You_Know_About_That', 'You_Dont_Know_Me']
+    };
+    
+    return fallbackOptions[group] || [];
   }
 
 
@@ -138,41 +152,34 @@
     try {
       console.log(`getExactFilename called for ${group}/${option}`);
       
-      // Fetch the directory listing from the server
+      // Try to fetch from server first
       const response = await fetch(`/api/layers/${group}`);
-      if (!response.ok) {
-        console.error(`Failed to fetch layer files for ${group}:`, response.status);
-        return `${option}20.png`; // Default fallback
-      }
-      
-      const files = await response.json();
-      console.log(`Files returned for ${group}:`, files);
-      
-      // Find the file that matches this option
-      const matchingFile = files.find((file: string) => {
-        // Remove .png extension and numbers at the end
-        const baseName = file.replace(/\.png$/, '').replace(/\d+$/, '');
-        console.log(`File: "${file}" -> Base name: "${baseName}" -> Option: "${option}"`);
-        const matches = baseName === option;
-        if (matches) {
-          console.log(`Found match: "${file}"`);
+      if (response.ok) {
+        const files = await response.json();
+        console.log(`Files returned for ${group}:`, files);
+        
+        // Find the file that matches this option
+        const matchingFile = files.find((file: string) => {
+          const baseName = file.replace(/\.png$/, '').replace(/\d+$/, '');
+          const matches = baseName === option;
+          if (matches) {
+            console.log(`Found match: "${file}"`);
+          }
+          return matches;
+        });
+        
+        if (matchingFile) {
+          console.log(`Found exact filename for ${group}/${option}: ${matchingFile}`);
+          return matchingFile;
         }
-        return matches;
-      });
-      
-      console.log(`Matching file found:`, matchingFile);
-      
-      if (matchingFile) {
-        console.log(`Found exact filename for ${group}/${option}: ${matchingFile}`);
-        return matchingFile;
       }
-      
-      console.warn(`No exact filename found for ${group}/${option}, using default`);
-      return `${option}20.png`; // Default fallback
     } catch (error) {
-      console.error(`Error getting exact filename for ${group}/${option}:`, error);
-      return `${option}20.png`; // Default fallback
+      console.log(`Server API not available, using fallback for ${group}/${option}`);
     }
+    
+    // Fallback: Use a standard naming convention
+    console.log(`Using fallback filename for ${group}/${option}`);
+    return `${option}20.png`; // Default fallback
   }
 
   function debouncedGeneratePreview() {
