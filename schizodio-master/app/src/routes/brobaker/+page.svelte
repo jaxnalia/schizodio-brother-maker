@@ -104,7 +104,7 @@
     // Use hardcoded options for both local and production - based on actual filenames
     const fallbackOptions: Record<string, string[]> = {
       'Background': ['A_Roads', 'Akademia_Italia', 'Alotments', 'Atms_&_Ktms', 'Bajan_Bando', 'Bajan_Cliff_View', 'Bajan_Safehouse', 'Bajan_VIlla', 'Big_pharma', 'Bitcoin_Broly', 'Black_Pool', 'Blue_Cryptonite', 'Blue_Eyes_Thunder_Dragon_', 'Bonus_stage', 'Cell_Games', 'China_', 'China_Courtyard', 'Chongqing', 'Chongqing_磁器口古镇_', 'Chuppa_pillz', 'Cloud_Nine', 'CountrySide_1', 'CountrySide_2', 'County_Line', 'Cour_d\'honneur', 'Danube_River', 'DMT', 'Dubai_Desert', 'Dubai_Desert_2', 'Duck_hunt', 'Fenty_Bando', 'Fisherman\'s_Bastion', 'Five_joints', 'Furīza_no_Uchūsen', 'Hadoken_波動拳', 'Honest_werk', 'Hong_Kong', 'Hongya_Cave_洪崖洞', 'Hyperbolic_Timechamber', 'Jiggas_in_paris', 'Jumeirah_Beach_Residence', 'Kong_Island', 'Light_&_Mist', 'Magyar_Állami_Operaház', 'Marina_Skyline', 'Marky_b', 'Mega_Drive', 'Money_Shot', 'Museum_of_the_Future', 'Nacht_der_Untoten', 'Nacht_der_Untoten_2', 'Nity_Ave', 'NYCafé', 'Open_Sea', 'Open_Sea_2', 'Palm_Jumeirah', 'Paradise_1', 'Paradise_2', 'Paradise_3', 'Paradise_4', 'Paradise_5', 'Paradise_6', 'Pepe_Pillz', 'Phantom', 'Pick\'n_Mix', 'Pink_Champagne', 'Planet_Kai', 'Raffles_City', 'Rekt_Bardock', 'Richard_Haynes_Boardwalk', 'Schizo_Yoshi_Kart', 'Shang_Tsung\'s_Palace', 'Sleepy_Hollow', 'SNES_Cartridge', 'Star_Dawg', 'Széchenyi_Lánchíd', 'Tesla_Pillz', 'The_Canal', 'The_endz', 'The_Endz_2', 'The_Marina', 'The_Office_SZN1', 'The_Office_SZN2', 'The_Peak', 'The_Pit', 'Touch_grass', 'UPS_pillz', 'White_Widow', 'Yangtze_River'],
-      'Body': ['Boy_Who_Cried_Wolf', 'Brother', 'Gora', 'Greeny', 'Lobster_Pink', 'Purple_Urkle', 'Schizo_Blue', 'Schizo_Panda', 'Snowflake', 'Stone_Cyborg'],
+      'Body': ['Boy_Who_Cried_Wolf', 'Brother', 'Gora', 'Greeny', 'Lobster_Pink', 'Purple_Urkle', 'Schizo_Blue', 'Snowflake', 'Stone_Cyborg'],
       'Clothing': ['ADHD_Tshirt', 'Agbada_Tshirt', 'Apestar_Jacket', 'Argent_Tshirt', 'Autism_Jumper', 'Baby_Schizo_Pink_Tshirt', 'Baby_Schizo_White_Tshirt', 'Backwoods_Hoodie', 'Bitchari_T_shirt', 'Black_Jacket', 'Blue_Puffer', 'Bob_Sponge_Tshirt', 'Chaatgpt_Tshirt', 'Ekubo_Tshirt', 'ETHLend_Tshirt', 'Faguar_Tshirt', 'Flintstones_Tshirt', 'Get_Money_Tshirt', 'Gods_Strongest_Schizo', 'Gold_Skull_Shirt', 'Golden_Boy_Tracksuit', 'Goochi_Track_Jacket', 'Guru_Suit', 'I_Am_Carrying_Tshirt', 'I_Have_A_Weapon', 'Im_with_Schizodio_Tshirt', 'Israeli_Coin_Tshirt', 'Krusty_Tshirt', 'Kurta_Jeet', 'Life_is_Soup_Tshirt', 'Love_Nigeria_Tshirt', 'Luv_Cobie_Tshirt', 'Mushroom_Jacket', 'Mushroomon_Jacket', 'Okay_Now_Tshirt', 'Paradex_Tshirt', 'Peaky_Blind_Tshirt', 'Pink_Puffer', 'Polymarket_Tshirt', 'Puff_Tshirt', 'Purple_Aki_Tshirt_', 'Purple_Tuxedo', 'Relax_Vest', 'Remilia_Jacket', 'Saiyan_Suit', 'Scared_of_Women', 'Schizario_Tshirt', 'Schizoberry_Tshirt', 'Schizodio_Company_Blue_Tshirt', 'Schizodio_Company_Brown_Tshirt', 'Schizo_Duck_Tshirt', 'Schizo_Game_Tshirt', 'Schizo_Hut_Tshirt', 'Schizo_Network_Tshirt', 'Schizo_Red_Tshirt', 'Schizo_Tunez_Tshirt', 'School_Uniform', 'SLM_Tshirt', 'Spider_Tshirt', 'Squid_Jacket', 'Starknet_Tshirt', 'StarkWare_Alf_Tshirt', 'Stoney_Puffer', 'Stop_Being_Poor_Vest', 'Strapped_Schizo_Tshirt', 'Tamil_Tiger_Tshirt', 'They_Tshirt', 'Turkey_Camo_Tshirt', 'Turkey_Track_Jacket', 'Turquoise_Tuxedo', 'Tuxedo', 'Venom_Suit', 'Xverse_Tshirt', 'Zero_Tshirt'],
       'Hair': ['Black_Jellycut', 'Black_Pompadour', 'Blondie_Brown_Pompadour', 'Blue_Sherbert_Fringe_Flow', 'Brown_Curtain_Bob', 'Brown_Fringe_Flow', 'Cyan_Blue_Pompadour', 'Dark_Green_Jelly_Cut', 'Dark_Red_Fringe_Flow', 'Fringe_Cyan', 'Fringe_Pink', 'Fringe_White', 'Ginger_Curtain_Bob', 'Green_Fringe_Flow', 'Green_Jellycut', 'Light_Blonde_Pompadour', 'Milady_Black', 'Milady_Dark_Blue', 'Milady_Green', 'Milady_Red', 'Purple_Curtain_Bob', 'Purple_Pompadour', 'Quan_Orange', 'Quan_Pink', 'Quan_Red_Black', 'Rainbow_Curtain_Bob', 'Rainbow_Sherbet_Fringe_Flow', 'Red_Jellycut', 'Remilio_Madoka', 'Remilio_Madoka_Red', 'White_Jellycut', 'Yellowy_Orange_Curtain_Bob'],
       'Eyebrows': ['Black_Notched_Slits', 'Black_Slits', 'Blue_Notched_Slit', 'Cyan_Camo', 'Funky', 'Purple_Camo', 'Purple_Slits', 'Red_Eyebrows_', 'Sad', 'Schizodio_Blue', 'Standard', 'Standard_2', 'Tinted_Green_Notched_Slit'],
@@ -231,7 +231,7 @@
         'Lobster_Pink': 'Lobster_Pink20.png',
         'Purple_Urkle': 'Purple_Urkle20.png',
         'Schizo_Blue': 'Schizo_Blue20.png',
-        'Schizo_Panda': 'Schizo_Panda2.png',
+        // 'Schizo_Panda': 'Schizo_Panda2.png',
         'Snowflake': 'Snowflake20.png',
         'Stone_Cyborg': 'Stone_Cyborg20.png'
       },
@@ -817,14 +817,14 @@
   <title>Schizodio Brother Baker 🤡</title>
 </svelte:head>
 
-<div class="flex flex-col gap-4 p-4 h-full">
+<div class="flex flex-col gap-4 h-full">
   <Window title="Schizodio Brother Baker 🤡" width="100%" height="auto">
     <div class="flex flex-col lg:flex-row gap-4 h-full">
       <!-- Preview Section -->
       <div class="flex-1 bg-win95">
         Preview
         <!-- <Window title="Preview" width="100%" height="400px"> -->
-          <div class="flex justify-center items-center h-full bg-win95">
+          <div class="flex justify-center items-center h-128 bg-win95">
             {#if isLoading}
               <div class="text-center">
                 <div class="text-lg mb-2">Loading...</div>
