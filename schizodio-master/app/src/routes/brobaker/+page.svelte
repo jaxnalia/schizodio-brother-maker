@@ -776,13 +776,69 @@
     });
   }
 
-  function downloadImage() {
+  async function downloadImage() {
     if (!previewCanvas) return;
     
-    const link = document.createElement('a');
-    link.download = 'schizodio-brother.png';
-    link.href = previewCanvas.toDataURL();
-    link.click();
+    // Detect mobile devices
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // Mobile: Save to camera roll/photo gallery
+      try {
+        // Convert canvas to blob
+        const blob = await new Promise<Blob>((resolve, reject) => {
+          previewCanvas.toBlob((blob) => {
+            if (blob) resolve(blob);
+            else reject(new Error('Failed to create image blob'));
+          }, 'image/png');
+        });
+        
+        // Create object URL
+        const imageUrl = URL.createObjectURL(blob);
+        
+        // Create a temporary link element
+        const link = document.createElement('a');
+        link.href = imageUrl;
+        link.download = 'schizodio-brother.png';
+        
+        // For iOS, we need to trigger a long press or use Web Share API if available
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          // iOS: Use Web Share API if available, otherwise fallback to download
+          if (navigator.share) {
+            try {
+              const file = new File([blob], 'schizodio-brother.png', { type: 'image/png' });
+              await navigator.share({
+                title: 'Schizodio Brother',
+                text: 'Check out my Schizodio Brother!',
+                files: [file]
+              });
+            } catch (shareError) {
+              console.log('Web Share API failed, falling back to download:', shareError);
+              link.click();
+            }
+          } else {
+            // Fallback for iOS without Web Share API
+            link.click();
+          }
+        } else {
+          // Android: Use download attribute which should save to gallery
+          link.click();
+        }
+        
+        // Clean up object URL
+        setTimeout(() => URL.revokeObjectURL(imageUrl), 1000);
+        
+      } catch (error) {
+        console.error('Error saving image on mobile:', error);
+        alert('Failed to save image. Please try again.');
+      }
+    } else {
+      // Desktop: Use traditional download
+      const link = document.createElement('a');
+      link.download = 'schizodio-brother.png';
+      link.href = previewCanvas.toDataURL();
+      link.click();
+    }
   }
 
   async function shareToX() {
