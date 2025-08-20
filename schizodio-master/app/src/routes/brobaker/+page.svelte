@@ -666,24 +666,27 @@
     }
     
     isGenerating = true;
-    const ctx = previewCanvas.getContext('2d');
-    if (!ctx) {
-      console.log('Could not get canvas context');
+    
+    // Set canvas size for better quality (1024x1024 for high quality, display size handled by CSS)
+    if (previewCanvas.width !== 1024 || previewCanvas.height !== 1024) {
+      previewCanvas.width = 1024;
+      previewCanvas.height = 1024;
+    }
+
+    // Create a temporary canvas to build the new image
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = 1024;
+    tempCanvas.height = 1024;
+    const tempCtx = tempCanvas.getContext('2d');
+    
+    if (!tempCtx) {
+      console.log('Could not get temporary canvas context');
       isGenerating = false;
       return;
     }
 
-    // Set canvas size for better quality (responsive)
-    const isLargeScreen = window.innerWidth >= 1024; // lg breakpoint
-    const canvasSize = isLargeScreen ? 500 : 300;
-    
-    if (previewCanvas.width !== canvasSize || previewCanvas.height !== canvasSize) {
-      previewCanvas.width = canvasSize;
-      previewCanvas.height = canvasSize;
-    }
-
-    // Clear canvas
-    ctx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+    // Clear temporary canvas
+    tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
 
     // Load and draw layers in order (bottom to top)
     const layerOrder = ['Background', 'Body', 'Mask', 'Mouth', 'Eyes', 'Eyebrows', 'Hair', 'Eyewear', 'Clothing', 'Headwear', 'Weapons', 'Sidekick', 'Accessories', 'Overlays'];
@@ -716,28 +719,35 @@
     // Wait for all images to load
     const results = await Promise.all(imagePromises);
     
-         // Draw all loaded images
-     console.log('Drawing results:', results.length);
-     for (const result of results) {
-       if (result && result.image) {
-         ctx.drawImage(result.image, 0, 0, previewCanvas.width, previewCanvas.height);
-         anyImageLoaded = true;
-         console.log(`Drew layer: ${result.layerGroup}`);
-       } else {
-         console.log('Skipped result:', result);
-       }
-     }
+    // Draw all loaded images on temporary canvas
+    console.log('Drawing results:', results.length);
+    for (const result of results) {
+      if (result && result.image) {
+        tempCtx.drawImage(result.image, 0, 0, tempCanvas.width, tempCanvas.height);
+        anyImageLoaded = true;
+        console.log(`Drew layer: ${result.layerGroup}`);
+      } else {
+        console.log('Skipped result:', result);
+      }
+    }
     
-    // If no images were loaded, show a placeholder
+    // If no images were loaded, show a placeholder on temporary canvas
     if (!anyImageLoaded) {
       console.log('No images loaded, showing placeholder');
-      ctx.fillStyle = '#c0c0c0';
-      ctx.fillRect(0, 0, previewCanvas.width, previewCanvas.height);
-      ctx.fillStyle = '#000000';
-      ctx.font = '20px Arial';
-      ctx.textAlign = 'center';
-      ctx.fillText('Brother Baker', previewCanvas.width / 2, previewCanvas.height / 2 - 20);
-      ctx.fillText('Loading...', previewCanvas.width / 2, previewCanvas.height / 2 + 20);
+      tempCtx.fillStyle = '#c0c0c0';
+      tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+      tempCtx.fillStyle = '#000000';
+      tempCtx.font = '20px Arial';
+      tempCtx.textAlign = 'center';
+      tempCtx.fillText('Brother Baker', tempCanvas.width / 2, tempCanvas.height / 2 - 20);
+      tempCtx.fillText('Loading...', tempCanvas.width / 2, tempCanvas.height / 2 + 20);
+    }
+    
+    // Now copy the completed image to the main canvas (only when everything is ready)
+    const mainCtx = previewCanvas.getContext('2d');
+    if (mainCtx) {
+      mainCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+      mainCtx.drawImage(tempCanvas, 0, 0);
     }
     
     isGenerating = false;
