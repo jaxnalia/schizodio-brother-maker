@@ -893,7 +893,7 @@
 
       <!-- Layer Controls -->
       
-      <div style="height:650px; width:100%" class="flex-1 overflow-y-auto">
+      <div style="height:650px; width:100%" class="flex-1 overflow-y-auto overflow-x-hidden">
         <!-- <Window title="Layer Controls" width="100%" height="600px"> -->
             
           <div class="space-y-4">
