@@ -880,13 +880,13 @@
             ⬅️ Back
           </Button>
           <Button on:click={() => randomizeAll(true)} width="auto" disabled={isLoading}>
-            🎲 Randomize All
+            🎲 Randomize
           </Button>
           <Button on:click={downloadImage} width="auto" disabled={isLoading}>
-            💾 Download
+            💾 Save
           </Button>
           <Button on:click={shareToX} width="auto" disabled={isLoading}>
-            🐦 Share to X
+            🐦 Share
           </Button>
         </div>
       </div>
