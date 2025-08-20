@@ -91,7 +91,7 @@
         <a href="/brobaker">
           <Button>
             <span class="mega-text {blinkState ? 'blink' : ''} glitch shake">
-              🎭 BROTHER MAKER! 🎭
+              🤡 BROTHER BAKER! 🧑‍🍳
             </span>
           </Button>
         </a>
