@@ -828,7 +828,7 @@
             {#if isLoading}
               <div class="text-center">
                 <div class="text-lg mb-2">Loading...</div>
-                <div class="text-sm text-win95-dark">Preparing the Brother Maker</div>
+                <div class="text-sm text-win95-dark">Preparing the Brother Baker</div>
               </div>
             {:else}
                              <div class="relative">
