@@ -3,6 +3,7 @@
   import Window from '$lib/components/Window.svelte';
   import Button from '$lib/components/Button.svelte';
   import Slider from '$lib/components/Slider.svelte';
+  import schizodio_title from '../../assets/images/schizodio.png';
 
   // Layer groups and their options
   const layerGroups = [
@@ -672,10 +673,13 @@
       return;
     }
 
-    // Set canvas size for better quality (only if not already set)
-    if (previewCanvas.width !== 400 || previewCanvas.height !== 400) {
-      previewCanvas.width = 400;
-      previewCanvas.height = 400;
+    // Set canvas size for better quality (responsive)
+    const isLargeScreen = window.innerWidth >= 1024; // lg breakpoint
+    const canvasSize = isLargeScreen ? 500 : 300;
+    
+    if (previewCanvas.width !== canvasSize || previewCanvas.height !== canvasSize) {
+      previewCanvas.width = canvasSize;
+      previewCanvas.height = canvasSize;
     }
 
     // Clear canvas
@@ -817,14 +821,24 @@
   <title>Schizodio Brother Baker 🤡</title>
 </svelte:head>
 
-<div class="flex flex-col gap-4 h-full">
+
+
+<div class="flex flex-col gap-4 m-auto max-w-screen-xl">
+    <div class="w-full max-w-screen-xl mx-auto px-4 flex justify-center">
+        <img
+          src={schizodio_title}
+          alt="Schizodio"
+          class="w-full h-auto rainbow"
+          style="max-width: 500px;"
+        />
+      </div>
   <Window title="Schizodio Brother Baker 🤡" width="100%" height="auto">
-    <div class="flex flex-col lg:flex-row gap-4 h-full">
+    <div class="flex flex-col lg:flex-row gap-4 ">
       <!-- Preview Section -->
       <div class="flex-1 bg-win95">
         Preview
         <!-- <Window title="Preview" width="100%" height="400px"> -->
-          <div class="flex justify-center items-center h-128 bg-win95">
+          <div class="flex justify-center items-center bg-win95">
             {#if isLoading}
               <div class="text-center">
                 <div class="text-lg mb-2">Loading...</div>
@@ -834,9 +848,7 @@
                              <div class="relative">
                                    <canvas 
                     bind:this={previewCanvas}
-                    width="400" 
-                    height="400" 
-                    class="border-2 border-win95-darker"
+                    class="border-2 border-win95-darker w-[320px] h-[320px] lg:w-[600px] lg:h-[600px]"
                     style="image-rendering: pixelated;"
                     on:load={() => console.log('Canvas loaded')}
                     on:error={() => console.log('Canvas error')}
@@ -853,7 +865,7 @@
         <!-- </Window> -->
         
         <!-- Action Buttons -->
-        <div class="flex gap-2 mt-4">
+        <div class="flex items-center justify-center gap-2 mt-4">
           <Button on:click={() => window.location.href = '/'} width="auto">
             ⬅️ Back
           </Button>
