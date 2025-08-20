@@ -85,7 +85,7 @@
         for (const option of imagesToPreload) {
           try {
             const exactFilename = await getExactFilename(group, option);
-            const imagePath = `/layers/${group}/${exactFilename}`;
+            const imagePath = `https://raw.githubusercontent.com/jaxnalia/schizodio-brother-maker/721b1710b5108ad67c2ab794622598f45ddc80e1/schizodio-master/app/static/layers/${group}/${exactFilename}`;
             // Load but don't wait for it
             loadImage(imagePath).catch(() => {
               // Silently fail for preloading
@@ -284,8 +284,8 @@
           return null;
         }
         
-        const imagePath = `/layers/${layerGroup}/${exactFilename}`;
-        console.log(`Loading: ${imagePath}`);
+        const imagePath = `https://raw.githubusercontent.com/jaxnalia/schizodio-brother-maker/721b1710b5108ad67c2ab794622598f45ddc80e1/schizodio-master/app/static/layers/${layerGroup}/${exactFilename}`;
+        console.log(`Loading from GitHub: ${imagePath}`);
         
         const image = await loadImage(imagePath);
         return { layerGroup, image };
