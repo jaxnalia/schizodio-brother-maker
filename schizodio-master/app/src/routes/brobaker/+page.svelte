@@ -102,7 +102,7 @@
     console.log(`Getting options for group: ${group}`);
     
     try {
-      // Try to fetch from server first
+      // Try to fetch from server first (for local development)
       const response = await fetch(`/api/layers/${group}`);
       if (response.ok) {
         const files = await response.json();
@@ -124,7 +124,7 @@
       console.log(`Server API not available, using fallback for ${group}`);
     }
     
-    // Fallback: Use hardcoded options based on the actual files
+    // Fallback: Use hardcoded options (for deployment)
     const fallbackOptions: Record<string, string[]> = {
       'Background': ['A_Roads', 'Akademia_Italia', 'Alotments', 'Atms_Ktms', 'Bajan_Bando', 'Bajan_Cliff_View', 'Bajan_Safehouse', 'Bajan_Villa', 'Big_pharma', 'Bitcoin_Broly', 'Black_Pool', 'Blue_Cryptonite', 'Blue_Eyes_Thunder_Dragon', 'Bonus_stage', 'Cell_Games', 'China', 'China_Courtyard', 'Chongqing', 'Chongqing_磁器口古镇', 'Chuppa_pillz', 'Cloud_Nine', 'CountrySide_1', 'CountrySide_2', 'County_Line', 'Cour_dhonneur', 'Danube_River', 'DMT', 'Dubai_Desert', 'Dubai_Desert_2', 'Duck_hunt', 'Fenty_Bando', 'Fishers_Bastion', 'Five_joints', 'Furīza_no_Uchūsen', 'Hadoken_波動拳', 'Honest_werk', 'Hong_Kong', 'Hongya_Cave_洪崖洞', 'Hyperbolic_Timechamber', 'Jiggas_in_paris', 'Jumeirah_Beach_Residence', 'Kong_Island', 'Light_Mist', 'Magyar_Állami_Operaház', 'Marina_Skyline', 'Marky_b', 'Mega_Drive', 'Money_Shot', 'Museum_of_the_Future', 'Nacht_der_Untoten', 'Nacht_der_Untoten_2', 'Nity_Ave', 'NYCafé', 'Open_Sea', 'Open_Sea_2', 'Palm_Jumeirah', 'Paradise_1', 'Paradise_2', 'Paradise_3', 'Paradise_4', 'Paradise_5', 'Paradise_6', 'Pepe_Pillz', 'Phantom', 'Pick_n_Mix', 'Pink_Champagne', 'Planet_Kai', 'Raffles_City', 'Rekt_Bardock', 'Richard_Haynes_Boardwalk', 'Schizo_Yoshi_Kart', 'Shang_Tsungs_Palace', 'Sleepy_Hollow', 'SNES_Cartridge', 'Star_Dawg', 'Széchenyi_Lánchíd', 'Tesla_Pillz', 'The_Canal', 'The_Endz', 'The_Endz_2', 'The_Marina', 'The_Office_SZN1', 'The_Office_SZN2', 'The_Peak', 'The_Pit', 'Touch_grass', 'UPS_pillz', 'White_Widow', 'Yangtze_River'],
       'Body': ['Boy_Who_Cried_Wolf', 'Brother', 'Gora', 'Greeny', 'Lobster_Pink', 'Purple_Urkle', 'Schizo_Blue', 'Schizo_Panda', 'Snowflake', 'Stone_Cyborg'],
@@ -142,17 +142,19 @@
       'Overlays': ['Abdel_Called_Me', 'Alexa_Hears', 'Bastard_Guy', 'Bitch_Im_Back', 'Dont_Trust_Anyone', 'Fuck_The_System', 'Get_Money', 'I_Believed_in_Something', 'I_Dont_Need_A_Lawyer', 'I_Have_A_Weapon', 'Im_Carrying', 'Im_Not_A_Cop', 'Im_With_Schizodio', 'Keep_It_Real', 'Life_Is_Soup', 'Make_Starknet_Great_Again', 'Money_Over_Everything', 'No_Snitching', 'On_My_Momma', 'Real_Nigga', 'Schizo_For_Life', 'Schizodio_Company', 'Stay_Humble', 'This_My_Jigga', 'Trust_No_One', 'We_Out_Here', 'What_You_Know_About_That', 'You_Dont_Know_Me']
     };
     
-    return fallbackOptions[group] || [];
+    const options = fallbackOptions[group] || [];
+    console.log(`Options for ${group}:`, options);
+    return options;
   }
 
 
 
   // Get the exact filename for an option
   async function getExactFilename(group: string, option: string): Promise<string> {
+    console.log(`getExactFilename called for ${group}/${option}`);
+    
     try {
-      console.log(`getExactFilename called for ${group}/${option}`);
-      
-      // Try to fetch from server first
+      // Try to fetch from server first (for local development)
       const response = await fetch(`/api/layers/${group}`);
       if (response.ok) {
         const files = await response.json();
@@ -177,9 +179,10 @@
       console.log(`Server API not available, using fallback for ${group}/${option}`);
     }
     
-    // Fallback: Use a standard naming convention
-    console.log(`Using fallback filename for ${group}/${option}`);
-    return `${option}20.png`; // Default fallback
+    // Fallback: Use standard naming convention (for deployment)
+    const filename = `${option}20.png`;
+    console.log(`Using fallback filename for ${group}/${option}: ${filename}`);
+    return filename;
   }
 
   function debouncedGeneratePreview() {
