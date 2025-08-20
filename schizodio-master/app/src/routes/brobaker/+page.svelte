@@ -854,7 +854,7 @@
         
         <!-- Action Buttons -->
         <div class="flex gap-2 mt-4">
-          <Button on:click={() => window.history.back()} width="auto">
+          <Button on:click={() => window.location.href = '/'} width="auto">
             ⬅️ Back
           </Button>
           <Button on:click={() => randomizeAll(true)} width="auto" disabled={isLoading}>
