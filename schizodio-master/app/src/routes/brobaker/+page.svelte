@@ -818,7 +818,7 @@
 </svelte:head>
 
 <div class="flex flex-col gap-4 p-4 h-full">
-  <Window title="Schizodio Brother Maker" width="100%" height="auto">
+  <Window title="Schizodio Brother Baker 🤡" width="100%" height="auto">
     <div class="flex flex-col lg:flex-row gap-4 h-full">
       <!-- Preview Section -->
       <div class="flex-1 bg-win95">
@@ -854,7 +854,10 @@
         
         <!-- Action Buttons -->
         <div class="flex gap-2 mt-4">
-                     <Button on:click={() => randomizeAll(true)} width="auto" disabled={isLoading}>
+          <Button on:click={() => window.history.back()} width="auto">
+            ⬅️ Back
+          </Button>
+          <Button on:click={() => randomizeAll(true)} width="auto" disabled={isLoading}>
             🎲 Randomize All
           </Button>
           <Button on:click={downloadImage} width="auto" disabled={isLoading}>
