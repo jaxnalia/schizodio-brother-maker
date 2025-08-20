@@ -732,7 +732,7 @@
       ctx.fillStyle = '#000000';
       ctx.font = '20px Arial';
       ctx.textAlign = 'center';
-      ctx.fillText('Brother Maker', previewCanvas.width / 2, previewCanvas.height / 2 - 20);
+      ctx.fillText('Brother Baker', previewCanvas.width / 2, previewCanvas.height / 2 - 20);
       ctx.fillText('Loading...', previewCanvas.width / 2, previewCanvas.height / 2 + 20);
     }
     
