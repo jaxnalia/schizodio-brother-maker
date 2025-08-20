@@ -88,6 +88,13 @@
             </span>
           </Button>
         </a>
+        <a href="/brobaker">
+          <Button>
+            <span class="mega-text {blinkState ? 'blink' : ''} glitch shake">
+              🎭 BROTHER MAKER! 🎭
+            </span>
+          </Button>
+        </a>
       </div>
     </Window>
   </div>

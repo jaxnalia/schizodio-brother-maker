@@ -1,4 +1,11 @@
 {
 	"/": [],
+	"/api/layers/[group]": [
+		"src/routes/api/layers/[group]/+server.ts"
+	],
+	"/api/tweet": [
+		"src/routes/api/tweet/+server.ts"
+	],
+	"/brobaker": [],
 	"/mint": []
 }

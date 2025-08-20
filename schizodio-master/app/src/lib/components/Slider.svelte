@@ -1,5 +1,8 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import { getClientX, calculateSliderValue, type SliderEvent } from '../utils/slider';
+
+  const dispatch = createEventDispatcher();
 
   export let value = 50;
   export let min = 0;
@@ -25,7 +28,11 @@
     if (isDragging && sliderTrack) {
       const clientX = getClientX(event);
       const rect = sliderTrack.getBoundingClientRect();
-      value = calculateSliderValue(clientX, rect, min, max, step);
+      const newValue = calculateSliderValue(clientX, rect, min, max, step);
+      if (newValue !== value) {
+        value = newValue;
+        dispatch('valueChange', value);
+      }
     }
   }
 </script>

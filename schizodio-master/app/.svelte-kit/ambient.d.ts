@@ -26,6 +26,13 @@
  * ```
  */
 declare module '$env/static/private' {
+	export const X_API_KEY: string;
+	export const X_API_SECRET: string;
+	export const X_BEARER_TOKEN: string;
+	export const X_ACCESS_TOKEN: string;
+	export const X_ACCESS_SECRET: string;
+	export const X_CLIENT_ID: string;
+	export const X_CLIENT_SECRET: string;
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
@@ -38,8 +45,10 @@ declare module '$env/static/private' {
 	export const CURSOR_TRACE_ID: string;
 	export const DriverData: string;
 	export const EDITOR: string;
-	export const EFC_5704: string;
+	export const EFC_7332: string;
 	export const FACEPUNCH_ENGINE: string;
+	export const FPS_BROWSER_APP_PROFILE_STRING: string;
+	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const GIT_ASKPASS: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
@@ -140,6 +149,13 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
+		X_API_KEY: string;
+		X_API_SECRET: string;
+		X_BEARER_TOKEN: string;
+		X_ACCESS_TOKEN: string;
+		X_ACCESS_SECRET: string;
+		X_CLIENT_ID: string;
+		X_CLIENT_SECRET: string;
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
 		CHROME_CRASHPAD_PIPE_NAME: string;
@@ -152,8 +168,10 @@ declare module '$env/dynamic/private' {
 		CURSOR_TRACE_ID: string;
 		DriverData: string;
 		EDITOR: string;
-		EFC_5704: string;
+		EFC_7332: string;
 		FACEPUNCH_ENGINE: string;
+		FPS_BROWSER_APP_PROFILE_STRING: string;
+		FPS_BROWSER_USER_PROFILE_STRING: string;
 		GIT_ASKPASS: string;
 		HOME: string;
 		HOMEDRIVE: string;

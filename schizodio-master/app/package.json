@@ -11,6 +11,7 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "dependencies": {
+    "dotenv": "^17.2.1",
     "starknet": "^6.11.0",
     "starknetkit": "^2.9.0"
   },
