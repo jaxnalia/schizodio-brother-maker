@@ -18,12 +18,24 @@
     'https://www.myinstants.com/media/sounds/mktoasty.mp3',
     'https://www.myinstants.com/media/sounds/perfect-street-fighter-sound-effect.mp3',
     'https://www.myinstants.com/media/sounds/tiger-uppercut-sagat.mp3',
-    // 'https://www.myinstants.com/media/sounds/groan-tube-1_kdDdtlv.mp3',
-    // 'https://www.myinstants.com/media/sounds/groan-tube-2_xK05nvu.mp3',
     'https://www.myinstants.com/media/sounds/hitmarker_1.mp3',
     'https://www.myinstants.com/media/sounds/hit-marker.mp3',
     'https://www.myinstants.com/media/sounds/take-off_2YqCEjc.mp3',
-    'https://www.myinstants.com/media/sounds/man-screaming-aaaah.mp3'
+    'https://www.myinstants.com/media/sounds/man-screaming-aaaah.mp3',
+    'https://www.myinstants.com/media/sounds/dont-get-twisted-bruv.mp3',
+    'https://www.myinstants.com/media/sounds/suckdicks.mp3',
+    'https://www.myinstants.com/media/sounds/drugs_owlsoundboard_edit.mp3',
+    'https://www.myinstants.com/media/sounds/you-dirty-slag.mp3',
+    'https://www.myinstants.com/media/sounds/suicide.mp3',
+    'https://www.myinstants.com/media/sounds/haram-andrew-tate_1iFyjoS.mp3',
+    'https://www.myinstants.com/media/sounds/why-are-you-gay.mp3',
+    'https://www.myinstants.com/media/sounds/super-mario-world-yoshi-sound.mp3',
+    'https://www.myinstants.com/media/sounds/power-up-mario.mp3',
+    'https://www.myinstants.com/media/sounds/super-mario-64-voice-clips-and-sound-effects.mp3',
+    'https://www.myinstants.com/media/sounds/mario-coin-sound-effect.mp3',
+    'https://www.myinstants.com/media/sounds/smyw-gordon-ramsey.mp3',
+    'https://www.myinstants.com/media/sounds/oh-my-god-meme.mp3',
+    'https://www.myinstants.com/media/sounds/attack-10-sword-stab.mp3'
   ];
 
   // Mute state
