@@ -4,6 +4,52 @@
   import Button from '$lib/components/Button.svelte';
   import Slider from '$lib/components/Slider.svelte';
   import schizodio_title from '../../assets/images/schizodio.png';
+  import '$lib/styles/win95.css';
+  import '../../app.css';
+
+  // Sound effects for random playback on click
+  const soundEffects = [
+    'https://www.myinstants.com/media/sounds/china_GN3TDUt.mp3',
+    'https://www.myinstants.com/media/sounds/hadouken-sound-effect-256-kbps.mp3',
+    'https://www.myinstants.com/media/sounds/smzinho-apanhando-no-tekken.mp3',
+    'https://www.myinstants.com/media/sounds/tekken-is-so-shit.mp3',
+    'https://www.myinstants.com/media/sounds/chicken_CvIaVtK.mp3',
+    'https://www.myinstants.com/media/sounds/shoryureppa-02-ken.mp3',
+    'https://www.myinstants.com/media/sounds/mktoasty.mp3',
+    'https://www.myinstants.com/media/sounds/perfect-street-fighter-sound-effect.mp3',
+    'https://www.myinstants.com/media/sounds/tiger-uppercut-sagat.mp3',
+    'https://www.myinstants.com/media/sounds/groan-tube-1_kdDdtlv.mp3',
+    'https://www.myinstants.com/media/sounds/groan-tube-2_xK05nvu.mp3',
+    'https://www.myinstants.com/media/sounds/hitmarker_1.mp3',
+    'https://www.myinstants.com/media/sounds/hit-marker.mp3',
+    'https://www.myinstants.com/media/sounds/take-off_2YqCEjc.mp3',
+    'https://www.myinstants.com/media/sounds/man-screaming-aaaah.mp3'
+  ];
+
+  // Mute state
+  let isMuted = false;
+
+  // Function to play random sound
+  function playRandomSound() {
+    if (isMuted) return; // Don't play if muted
+    
+    const randomIndex = Math.floor(Math.random() * soundEffects.length);
+    const audio = new Audio(soundEffects[randomIndex]);
+    audio.volume = 0.5; // Set volume to 50%
+    audio.play().catch(error => {
+      console.log('Audio playback failed:', error);
+    });
+  }
+
+  // Global click handler for the entire page
+  function handlePageClick() {
+    playRandomSound();
+  }
+
+  // Toggle mute function
+  function toggleMute() {
+    isMuted = !isMuted;
+  }
 
   // Layer groups and their options
   const layerGroups = [
@@ -889,7 +935,7 @@
 
 
 
-<div class="flex flex-col gap-4 m-auto max-w-screen-xl">
+<div class="flex flex-col gap-4 m-auto max-w-screen-xl" on:click={handlePageClick}>
     <div class="w-full max-w-screen-xl mx-auto px-4 flex justify-center">
         <img
           src={schizodio_title}
@@ -995,6 +1041,14 @@
     </div>
   </Window>
 </div>
+
+<!-- Mute Button - Fixed Position -->
+<button 
+  on:click={toggleMute}
+  class="fixed bottom-1 left-1 z-50 win95-button px-3 py-2 text-sm font-bold"
+>
+  {isMuted ? '🔇' : '🔊'}
+</button>
 
 <style>
   canvas {
