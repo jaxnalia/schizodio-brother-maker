@@ -1,7 +1,10 @@
 <script lang="ts">
+  import { injectAnalytics } from '@vercel/analytics/sveltekit'
   import { currentTheme } from '../lib/stores/theme';
   import '../app.css';
 
+  injectAnalytics()
+  
   $: ({
     colors: { background, window, text, highlight, highlightText },
   } = $currentTheme);
