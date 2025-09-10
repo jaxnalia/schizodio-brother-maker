@@ -225,6 +225,7 @@
   
 </footer>
 
+
 <!-- SCHIZO STYLES -->
 <style>
   .schizo-text {
