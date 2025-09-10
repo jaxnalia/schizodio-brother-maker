@@ -2,6 +2,6 @@
   import Mint from '../../lib/Mint/+page.svelte';
 </script>
 <svelte:head>
-  <title>Mint NFTs - Schizodio</title>
+  <title>Mint NFTs - SCHIZODIO</title>
 </svelte:head>
 <Mint />
