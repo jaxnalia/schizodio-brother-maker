@@ -217,6 +217,13 @@
     </Window>
   </div>
 </div>
+<footer class="text-center flex justify-center gap-5 mt-5 text-blue-500">
+  <a class="hover:underline" href="https://www.geckoterminal.com/starknet-alpha/pools/0x116679a71aa797a1f2bfe6e6746f823906d7765e71bd250e569340ae975ae56">GeckoTerminal</a>
+  <a class="hover:underline" href="https://dexscreener.com/starknet/0x00acc2fa3bb7f6a6726c14d9e142d51fe3984dbfa32b5907e1e76425177875e2-0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d-2347948331754475397897284791279200659-5982-0x0">DexScreener</a>
+  <a class="hover:underline" href="https://www.coingecko.com/en/coins/schizodio">CoinGecko</a>
+  <a class="hover:underline" href="https://dex.coinmarketcap.com/token/starknet/0xacc2fa3bb7f6a6726c14d9e142d51fe3984dbfa32b5907e1e76425177875e2/">CoinMarketCap</a>
+  
+</footer>
 
 <!-- SCHIZO STYLES -->
 <style>
