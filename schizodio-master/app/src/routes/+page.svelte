@@ -9,11 +9,11 @@
 	<meta name="twitter:creator" content="@schizodio">
 	<meta name="twitter:title" content="Schizodio">
 	<meta name="twitter:description" content="Schizodio is bareback sex on Starknet blockchain.">
-	<!-- <meta name="twitter:image" content="https://bigjax.s3.eu-west-2.amazonaws.com/twitter-image-2.jpg"> -->
+	<meta name="twitter:image" content="https://raw.githubusercontent.com/jaxnalia/schizodio-brother-maker/refs/heads/main/schizodio-master/app/static/og-image.png">
 	<meta property="og:title" content="Schizodio">
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://schizodio.xyz/">
-	<!-- <meta property="og:image" content="https://bigjax.s3.eu-west-2.amazonaws.com/twitter-image-2.jpg"> -->
+	<meta property="og:image" content="https://raw.githubusercontent.com/jaxnalia/schizodio-brother-maker/refs/heads/main/schizodio-master/app/static/og-image.png">
 	<meta property="og:description" content="Schizodio is bareback sex on Starknet blockchain.">
 </svelte:head>
 
