@@ -45,7 +45,11 @@ declare module '$env/static/private' {
 	export const CURSOR_TRACE_ID: string;
 	export const DriverData: string;
 	export const EDITOR: string;
-	export const EFC_7332: string;
+	export const EFC_13940_1262719628: string;
+	export const EFC_13940_1592913036: string;
+	export const EFC_13940_2283032206: string;
+	export const EFC_13940_2775293581: string;
+	export const EFC_13940_3789132940: string;
 	export const FACEPUNCH_ENGINE: string;
 	export const FPS_BROWSER_APP_PROFILE_STRING: string;
 	export const FPS_BROWSER_USER_PROFILE_STRING: string;
@@ -168,7 +172,11 @@ declare module '$env/dynamic/private' {
 		CURSOR_TRACE_ID: string;
 		DriverData: string;
 		EDITOR: string;
-		EFC_7332: string;
+		EFC_13940_1262719628: string;
+		EFC_13940_1592913036: string;
+		EFC_13940_2283032206: string;
+		EFC_13940_2775293581: string;
+		EFC_13940_3789132940: string;
 		FACEPUNCH_ENGINE: string;
 		FPS_BROWSER_APP_PROFILE_STRING: string;
 		FPS_BROWSER_USER_PROFILE_STRING: string;

@@ -942,7 +942,7 @@
 </script>
 
 <svelte:head>
-  <title>Schizodio Brother Baker 🤡</title>
+  <title>Brother Baker - Schizodio</title>
 </svelte:head>
 
 
