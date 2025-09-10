@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>Schizodio</title>
+  <title>SCHIZODIO</title>
   <meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@schizodio">
 	<meta name="twitter:creator" content="@schizodio">
